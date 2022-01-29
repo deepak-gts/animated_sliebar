@@ -47,17 +47,20 @@ class _AnimatedSideBarState extends State<AnimatedSideBar> {
         changeSlide();
         print("change drawer");
       },
-      drawer: Drawer(
-        backgroundColor: Colors.transparent,
-        elevation: 0,
-        child: SingleChildScrollView(
-          child: Column(
-            children: [
-              SizedBox(
-                height: MediaQuery.of(context).padding.top * 2,
-              ),
-              ...widget.menuItems,
-            ],
+      drawer: SizedBox(
+        width: MediaQuery.of(context).size.width * .58,
+        child: Drawer(
+          backgroundColor: Colors.transparent,
+          elevation: 0,
+          child: SingleChildScrollView(
+            child: Column(
+              children: [
+                SizedBox(
+                  height: MediaQuery.of(context).padding.top * 2,
+                ),
+                ...widget.menuItems,
+              ],
+            ),
           ),
         ),
       ),

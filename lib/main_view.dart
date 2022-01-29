@@ -6,10 +6,37 @@ class MainView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final textStyle =
+        Theme.of(context).textTheme.subtitle1!.copyWith(color: Colors.white);
     final GlobalKey<ScaffoldState> menuKey = GlobalKey();
     return AnimatedSideBar(
       menuKey: menuKey,
-      menuItems: const [],
+      menuItems: [
+        ListTile(
+          title: Text(
+            "Home",
+            style: textStyle,
+          ),
+        ),
+        ListTile(
+          title: Text(
+            "Contact Us",
+            style: textStyle,
+          ),
+        ),
+        ListTile(
+          title: Text(
+            "Feedback",
+            style: textStyle,
+          ),
+        ),
+        ListTile(
+          title: Text(
+            "Logout",
+            style: textStyle,
+          ),
+        ),
+      ],
       view1: HomeScreen(menu: menuKey),
       view2: const BackgroundScreen(),
     );
@@ -21,21 +48,13 @@ class HomeScreen extends StatelessWidget {
   const HomeScreen({Key? key, required this.menu}) : super(key: key);
   @override
   Widget build(BuildContext context) {
-    print("render home screen");
-    return Container(
-      width: double.infinity,
-      height: double.infinity,
-      color: Colors.red,
-      child: Column(
-        mainAxisSize: MainAxisSize.min,
-        mainAxisAlignment: MainAxisAlignment.center,
-        children: [
-          TextButton(
-              onPressed: () {
-                menu.currentState!.openDrawer();
-              },
-              child: Text("open menu"))
-        ],
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Animated Sidebar"),
+        leading: IconButton(
+          icon: const Icon(Icons.menu),
+          onPressed: menu.currentState!.openDrawer,
+        ),
       ),
     );
   }
@@ -46,11 +65,10 @@ class BackgroundScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    print("render background");
     return Container(
       width: double.infinity,
       height: double.infinity,
-      color: Colors.green,
+      color: Colors.indigo,
     );
   }
 }
